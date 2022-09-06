@@ -1,7 +1,6 @@
 describe('Bot', () => {
-  it('exists', () => {
+  it('generates name', () => {
     const p = new Bot()
     expect(p.name).toBe('Billy Bob')
   })
 })
-

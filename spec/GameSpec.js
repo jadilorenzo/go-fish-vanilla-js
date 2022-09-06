@@ -1,17 +1,17 @@
 describe('Game', () => {
-  const g = new Game([new Player('p1'), new Player('p2')])
+  let game = new Game([new Player('p1')])
 
   it('exists', () => {
-    expect(g).toBeTruthy()
+    expect(game).toBeTruthy()
   })
 
-  it('includes list of players', () => {
-    expect(g.players).toBeTruthy()
-    expect(g.players.length).toBe(3)
+  it('has 2 players', () => {
+    expect(game.players).toBeTruthy()
+    expect(game.players.length).toBe(2)
   })
 
-  // it('has a deck of 52', () => {
-  //   expect(g.deck).toBeTruthy()
-  //   expect(g.deck?.length).toBe(52)
-  // })
+  it('has 52 card deck', () => {
+    expect(game.deck).toBeTruthy()
+    expect(game.deck.length).toBe(52)
+  })
 })

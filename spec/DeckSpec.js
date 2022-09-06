@@ -1,14 +1,15 @@
 describe('Deck', () => {
+  const deck = new Deck()
+
   it('has 52 cards', () => {
-    const d = new Deck()
-    console.log(d)
-    expect(d.length).toBe(52)
+    expect(deck.length).toBe(52)
   })
 
-  it('always shuffled', () => {
-    const d = new Deck()
-    d.setDeck(d.perfectDeck)
+  it('will shuffle', () => {
+    deck.shuffle()
+    const deck2 = new Deck()
+    deck2.shuffle()
 
-    expect(d.isPerfect()).toBeFalse()
+    expect(deck.cards).not.toBe(deck2.cards)
   })
 })

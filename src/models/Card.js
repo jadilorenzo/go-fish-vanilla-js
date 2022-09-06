@@ -5,6 +5,6 @@ class Card {
     }
 
     equals(card) {
-        return this.suit === card.suit && this.rank === card.rank
+        return (this.suit === card.suit) && (this.rank === card.rank)
     }
 }
