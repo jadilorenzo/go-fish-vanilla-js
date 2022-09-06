@@ -1,6 +1,8 @@
 describe('Player', () => {
   it('exists', () => {
-    const p = new Player('name')
-    expect(p.name).toBe('name')
+    const player = new Player('name')
+    expect(player.name).toBe('name')
+    expect(player.hand.length).toBe(0)
+    expect(player.books.length).toBe(0)
   })
 })

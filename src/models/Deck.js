@@ -16,4 +16,8 @@ class Deck {
   shuffle() {
     this.cards = this.cards.sort(() => Math.random() - 0.5)
   }
+
+  draw() {
+    return this.cards.shift()
+  }
 }
