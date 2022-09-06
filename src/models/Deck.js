@@ -1,6 +1,3 @@
-const suits = ['A', 'H', 'S', 'C']
-const ranks = ['A','K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2' ]
-
 class Deck {
   constructor() {
     this.cards = []

@@ -1,7 +1,11 @@
 describe('Card', () => {
+    it('only allows approprate values', () => {
+        expect(new Card('foo', 'baz').rank).toBe(undefined)
+    })
+
     it('compares cards', () => {
-        c1 = new Card("D", "A")
-        c2 = new Card("D", "A")
-        expect(c1.equals(c2)).toBeTruthy()
+        card1 = new Card('D', 'A')
+        card2 = new Card('D', 'A')
+        expect(card1.equals(card2)).toBeTruthy()
     })
 })
