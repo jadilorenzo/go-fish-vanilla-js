@@ -56,8 +56,47 @@ const cardValues = [
 class Deck extends Array {
   constructor() {
     super()
+    this.perfectDeck = []
     for (const {suit, rank} of cardValues) {
-      this.push(new Card(suit, rank))
+      this.perfectDeck.push(new Card(suit, rank))
+    }
+    this.setDeck(this.perfectDeck)
+    this.shuffle()
+    this.isPerfect()
+  }
+
+  shuffle() {
+    this.sort(() => Math.random() - 0.5)
+  }
+
+  isPerfect() {
+    let i = 0
+    let perfect = true
+    for (const card of this) {
+      const perfectCard = this.perfectDeck[i]
+      if (!card.equals(perfectCard)) {
+        perfect = false
+        break
+      } else {
+        p = true
+        console.log(card, perfectCard)
+        i++
+      }
+    }
+
+    if (perfect) {
+      this.shuffle()
+      return this.isPerfect()    }
+
+    return perfect
+  }
+
+  setDeck(newDeck) {
+    for (const card of this) {
+      this.pop()
+    }
+    for (const card of newDeck) {
+      this.unshift(card)
     }
   }
 }
