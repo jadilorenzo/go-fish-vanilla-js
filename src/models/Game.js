@@ -1,5 +1,5 @@
 class Game {
   constructor(players) {
-    this.players = players
+    this.players = [...players, new Bot()]
   }
 }

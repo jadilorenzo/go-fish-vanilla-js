@@ -7,7 +7,7 @@ describe('Game', () => {
 
   it('includes list of players', () => {
     expect(g.players).toBeTruthy()
-    expect(g.players.length).toBe(2)
+    expect(g.players.length).toBe(3)
   })
 
   // it('has a deck of 52', () => {
