@@ -22,10 +22,11 @@ class Player {
   }
 
   take(card) {
-    this._hand.push(card)
+    if (card) this._hand.push(card)
   }
 
   give(cardIndex) {
     const card = this._hand.splice(cardIndex, 1)[0]
+    return card
   }
 }

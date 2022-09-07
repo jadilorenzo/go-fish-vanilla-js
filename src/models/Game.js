@@ -46,4 +46,12 @@ class Game {
     const card = this._players[recievingPlayerIndex].give(cardIndex)
     this._players[givingPlayerIndex].take(card)
   }
+
+  askFor(givingPlayerIndex, rank) {
+    const player1 = this._players[this._playerIndex]
+    const player2 = this._players[givingPlayerIndex]
+    player2.findIndexesWithRank(rank).forEach((index) => {
+      this.give(this._playerIndex, givingPlayerIndex, index)
+    })
+  }
 }
