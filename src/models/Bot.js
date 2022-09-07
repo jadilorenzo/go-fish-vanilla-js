@@ -1,10 +1,10 @@
 class Bot extends Player {
-    constructor() {
-        super()
-        this.generateName()
-    }
+  constructor() {
+    super()
+    this.generateName()
+  }
 
-    generateName() {
-        this.name = 'Billy Bob'
-    }
+  generateName() {
+    this.name = 'Billy Bob'
+  }
 }

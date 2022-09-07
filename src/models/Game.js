@@ -14,9 +14,9 @@ class Game {
   }
 
   lastPlayer() {
-    const player = (this._playerIndex !== 0) ?
-        this._players[this._playerIndex - 1] :
-        this._players[this._players.length - 1]
+    const player = (this._playerIndex !== 0)
+      ? this._players[this._playerIndex - 1]
+      : this._players[this._players.length - 1]
     return player
   }
 
@@ -30,9 +30,9 @@ class Game {
   }
 
   nextTurn() {
-    (this._playerIndex === this._players.length - 1) ?
-        this._playerIndex = 0 :
-        this._playerIndex++
+    this._playerIndex = (this._playerIndex === this._players.length - 1)
+      ? 0
+      : this._playerIndex + 1
   }
 
   deal() {

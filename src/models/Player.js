@@ -5,12 +5,20 @@ class Player {
     this._books = [] // array of array of cards
   }
 
+  books() {
+    return this._books
+  }
+
   hand() {
     return this._hand
   }
 
-  books() {
-    return this._books
+  findIndexesWithRank(rank) {
+    const indexes = []
+    this._hand.filter((c) => c.hasRank(rank)).forEach((c, index) => {
+      indexes.push(index)
+    })
+    return indexes
   }
 
   take(card) {

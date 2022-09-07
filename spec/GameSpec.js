@@ -40,7 +40,7 @@ describe('Game', () => {
   it('deals 7 cards to each player', () => {
     game = new Game([new Player('p1')])
     game.deal()
-    expect(game.deck().length).toBe(52-14)
+    expect(game.deck().length).toBe(52 - 14)
     expect(game.currentPlayer().name).toBe('p1')
     expect(game.currentPlayer().hand().length).toBe(7)
     expect(game.lastPlayer().hand().length).toBe(7)

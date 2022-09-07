@@ -26,6 +26,8 @@
         "no-console": 0,
         "no-undef": 0,
         "no-unused-vars": 0,
+        "quotes": ["error", "single"],
+        "no-underscore-dangle": 0
     },
     "settings": {
         "html/html-extensions": [".html"]
