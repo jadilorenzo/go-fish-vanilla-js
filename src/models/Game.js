@@ -1,21 +1,44 @@
 class Game {
   constructor(players = [new Player('Player 1')]) {
-    this.players = [...players, new Bot()]
-    this.deck = new Deck()
-    this.playerIndex = 0
+    this._players = [...players, new Bot()]
+    this._deck = new Deck()
+    this._playerIndex = 0
+  }
 
+  players() {
+    return this._players
+  }
+
+  deck() {
+    return this._deck
+  }
+
+  lastPlayer() {
+    const player = (this._playerIndex !== 0) ?
+        this._players[this._playerIndex - 1] :
+        this._players[this._players.length - 1]
+    return player
+  }
+
+  currentPlayer() {
+    return this._players[this._playerIndex]
   }
 
   draw() {
-    this.players[this.playerIndex].take(this.deck.draw())
+    this._players[this._playerIndex].take(this._deck.draw())
     this.nextTurn()
   }
 
   nextTurn() {
-    if (this.playerIndex === this.players.length - 1) {
-        this.playerIndex = 0
-    } else {
-        this.playerIndex++
+    (this._playerIndex === this._players.length - 1) ?
+        this._playerIndex = 0 :
+        this._playerIndex++
+  }
+
+  deal() {
+    for (let index = 0; index < this._players.length * 7; index++) {
+      this.draw()
     }
+    this._playerIndex = 0
   }
 }

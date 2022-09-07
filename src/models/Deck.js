@@ -1,23 +1,27 @@
 class Deck {
   constructor() {
-    this.cards = []
+    this._cards = []
     suits.forEach((suit) => {
       ranks.forEach((rank) => {
-        this.cards.push(new Card(suit, rank))
+        this._cards.push(new Card(suit, rank))
       })
     })
     this.original = this.cards
   }
 
   get length() {
-    return this.cards.length
+    return this._cards.length
+  }
+
+  cards() {
+    return this._cards
   }
 
   shuffle() {
-    this.cards = this.cards.sort(() => Math.random() - 0.5)
+    this.cards = this._cards.sort(() => Math.random() - 0.5)
   }
 
   draw() {
-    return this.cards.shift()
+    return this._cards.shift()
   }
 }
