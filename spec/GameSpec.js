@@ -1,46 +1,30 @@
 describe('Game', () => {
-  it('exists', () => {
-    const game = new Game()
-    expect(game).toBeTruthy()
-  })
-
-  it('has 2 players', () => {
+  it('has all neccesary appendages', () => {
     const game = new Game([new Player('p1')])
+    expect(game).toBeTruthy()
     expect(game.players()).toBeTruthy()
     expect(game.players().length).toBe(2)
-  })
-
-  it('has 52 card deck', () => {
-    const game = new Game()
     expect(game.deck()).toBeTruthy()
     expect(game.deck().length).toBe(52)
   })
 
-  it('allows player to goFish', () => {
+  it('allows multiple goFish', () => {
     const game = new Game([new Player('p1')])
-    expect(game.deck().length).toBe(52)
-    game.goFish()
-    expect(game.currentPlayer().hand().length).toBe(1)
+    game._goFish()
     expect(game.deck().length).toBe(51)
-  })
-
-  it('allows bot to goFish after player', () => {
-    const game = new Game([new Player('p1')])
-    game.goFish()
-    expect(game.deck().length).toBe(51)
-    game.nextTurn()
-    game.goFish()
-    expect(game.currentPlayer().name).toBe('Billy Bob')
-    expect(game.lastPlayer().hand().length).toBe(1)
+    game._nextTurn()
+    game._goFish()
+    expect(game._currentPlayer().name).toBe('Billy Bob')
+    expect(game._lastPlayer().hand().length).toBe(1)
     expect(game.deck().length).toBe(50)
-    expect(game.lastPlayer().name).toBe('p1')
+    expect(game._lastPlayer().name).toBe('p1')
   })
 
   it('deals 7 cards to each player', () => {
     const game = new Game([new Player('p1')])
     game.deal()
     expect(game.deck().length).toBe(52 - 14)
-    expect(game.currentPlayer().name).toBe('p1')
+    expect(game._currentPlayer().name).toBe('p1')
     expect(game.players()[0].hand().length).toBe(7)
     expect(game.players()[1].hand().length).toBe(7)
   })
@@ -48,7 +32,7 @@ describe('Game', () => {
   it('asks for a rank of card', () => {
     const game = new Game([new Player('p1')])
     game.deal()
-    game.askFor(1, 'A')
+    game.takeTurn(1, 'A')
     expect(game.players()[1].hand().length).toBe(6)
     expect(game.players()[0].hand()[7].rank()).toBe('A')
     expect(game.players()[0].hand().length).toBe(8)

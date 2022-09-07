@@ -13,24 +13,24 @@ class Game {
     return this._deck
   }
 
-  lastPlayer() {
+  _lastPlayer() {
     const player = (this._playerIndex !== 0)
       ? this._players[this._playerIndex - 1]
       : this._players[this._players.length - 1]
     return player
   }
 
-  currentPlayer() {
+  _currentPlayer() {
     return this._players[this._playerIndex]
   }
 
-  goFish() {
+  _goFish() {
     const topCard = this._deck.draw()
-    this._players[this._playerIndex].take([topCard])
+    this._players[this._playerIndex].take(topCard ? [topCard] : [])
     return topCard
   }
 
-  nextTurn() {
+  _nextTurn() {
     this._playerIndex = (this._playerIndex === this._players.length - 1)
       ? 0
       : this._playerIndex + 1
@@ -38,22 +38,22 @@ class Game {
 
   deal() {
     for (let index = 0; index < this._players.length * 7; index++) {
-      this.goFish()
-      this.nextTurn()
+      this._goFish()
+      this._nextTurn()
     }
     this._playerIndex = 0
   }
 
-  askFor(givingPlayerIndex, rank) {
+  _askFor(givingPlayerIndex, rank) {
     const cards = this._players[givingPlayerIndex].give(rank)
     this._players[this._playerIndex].take(cards)
     return cards
   }
 
   takeTurn(givingPlayerIndex, rank) {
-    if (this.askFor(givingPlayerIndex, rank).length === 0) {
-      if (!this.goFish().hasSuit(rank)) {
-        this.nextTurn()
+    if (this._askFor(givingPlayerIndex, rank).length === 0) {
+      if (!this._goFish().hasSuit(rank)) {
+        this._nextTurn()
       }
     }
   }
