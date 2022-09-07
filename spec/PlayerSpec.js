@@ -6,9 +6,11 @@ describe('Player', () => {
     expect(player.books().length).toBe(0)
   })
 
-  it('gets all indexes of a particular rank', () => {
-    const player = new Player('name')
-    player._hand.push(...[new Card('S', 'A'), new Card('H', 'A')])
-    expect(player.findIndexesWithRank('A')).toEqual([0, 1])
+  it('asks for a rank of card', () => {
+    const player = new Player([new Player('p1')])
+    player.take([new Card('S', 'A'), new Card('S', 'K'), new Card('H', 'A'), new Card('H', 'Q')])
+    const cards = player.give('A')
+    expect(cards[0].rank()).toBe('A')
+    expect(cards[1].rank()).toBe('A')
   })
 })

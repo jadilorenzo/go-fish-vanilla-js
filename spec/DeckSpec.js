@@ -6,10 +6,12 @@ describe('Deck', () => {
   })
 
   it('will shuffle', () => {
-    deck.shuffle()
+    const deck1 = new Deck()
     const deck2 = new Deck()
-    deck2.shuffle()
 
-    expect(deck.cards).not.toBe(deck2.cards)
+    expect(deck1).toEqual(deck2)
+
+    deck1.shuffle()
+    expect(deck1).not.toEqual(deck2)
   })
 })

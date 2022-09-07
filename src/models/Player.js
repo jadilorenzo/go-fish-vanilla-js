@@ -13,20 +13,15 @@ class Player {
     return this._hand
   }
 
-  findIndexesWithRank(rank) {
-    const indexes = []
-    this._hand.filter((c) => c.hasRank(rank)).forEach((c, index) => {
-      indexes.push(index)
-    })
-    return indexes
+  take(cards) {
+    if (cards.length !== 0) {
+      this._hand = this._hand.concat(cards)
+    }
   }
 
-  take(card) {
-    if (card) this._hand.push(card)
-  }
-
-  give(cardIndex) {
-    const card = this._hand.splice(cardIndex, 1)[0]
-    return card
+  give(rank) {
+    const cards = this._hand.filter((card) => card.hasRank(rank))
+    this._hand = this._hand.filter((card) => !card.hasRank(rank))
+    return cards
   }
 }
