@@ -45,4 +45,12 @@ describe('Game', () => {
     expect(game.currentPlayer().hand().length).toBe(7)
     expect(game.lastPlayer().hand().length).toBe(7)
   })
+
+  it('gives a card', () => {
+    game = new Game([new Player('p1')])
+    game.deal()
+    game.give(0, 1, 0)
+    expect(game.currentPlayer().hand().length).toBe(6)
+    expect(game.players()[1].hand().length).toBe(8)
+  })
 })

@@ -41,4 +41,9 @@ class Game {
     }
     this._playerIndex = 0
   }
+
+  give(recievingPlayerIndex, givingPlayerIndex, cardIndex) {
+    const card = this._players[recievingPlayerIndex].give(cardIndex)
+    this._players[givingPlayerIndex].take(card)
+  }
 }

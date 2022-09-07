@@ -17,7 +17,7 @@ class Player {
     this._hand.push(card)
   }
 
-  give() {
-    return this._hand.pop()
+  give(cardIndex) {
+    const card = this._hand.splice(cardIndex, 1)[0]
   }
 }
