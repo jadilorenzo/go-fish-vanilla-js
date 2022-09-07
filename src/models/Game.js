@@ -24,7 +24,7 @@ class Game {
     return this._players[this._playerIndex]
   }
 
-  draw() {
+  goFish() {
     this._players[this._playerIndex].take(this._deck.draw())
     this.nextTurn()
   }
@@ -37,7 +37,7 @@ class Game {
 
   deal() {
     for (let index = 0; index < this._players.length * 7; index++) {
-      this.draw()
+      this.goFish()
     }
     this._playerIndex = 0
   }
@@ -48,10 +48,18 @@ class Game {
   }
 
   askFor(givingPlayerIndex, rank) {
-    const player1 = this._players[this._playerIndex]
-    const player2 = this._players[givingPlayerIndex]
-    player2.findIndexesWithRank(rank).forEach((index) => {
+    const player = this._players[givingPlayerIndex]
+    let success = false
+    player.findIndexesWithRank(rank).forEach((index) => {
       this.give(this._playerIndex, givingPlayerIndex, index)
+      success = true
     })
+    return success
+  }
+
+  takeTurn(givingPlayerIndex, rank) {
+    if (!this.askFor(givingPlayerIndex, rank)) {
+      this.goFish()
+    }
   }
 }

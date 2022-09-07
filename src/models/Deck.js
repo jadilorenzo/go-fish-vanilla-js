@@ -1,3 +1,4 @@
+// DA DK DQ DJ D10... HA HK HQ...
 class Deck {
   constructor() {
     this._cards = []

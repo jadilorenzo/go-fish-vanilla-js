@@ -16,19 +16,19 @@ describe('Game', () => {
     expect(game.deck().length).toBe(52)
   })
 
-  it('allows player to draw', () => {
+  it('allows player to goFish', () => {
     const game = new Game([new Player('p1')])
     expect(game.deck().length).toBe(52)
-    game.draw()
+    game.goFish()
     expect(game.lastPlayer().hand().length).toBe(1)
     expect(game.deck().length).toBe(51)
   })
 
-  it('allows bot to draw after player', () => {
+  it('allows bot to goFish after player', () => {
     const game = new Game([new Player('p1')]) // 0
-    game.draw()
+    game.goFish()
     expect(game.deck().length).toBe(51)
-    game.draw()
+    game.goFish()
     expect(game.lastPlayer().name).toBe('Billy Bob')
     expect(game.lastPlayer().hand().length).toBe(1)
     expect(game.deck().length).toBe(50)
@@ -58,5 +58,13 @@ describe('Game', () => {
     game.askFor(1, 'A')
     expect(game.currentPlayer().hand().length).toBe(6)
     expect(game.lastPlayer().hand().length).toBe(8)
+  })
+
+  it('draws if no matching card from player', () => {
+    const game = new Game([new Player('p1')])
+    game.deal()
+    game.takeTurn(1, 'Q')
+    expect(game.players()[0].hand().length).toBe(8)
+    expect(game.players()[1].hand().length).toBe(7)
   })
 })
