@@ -28,7 +28,8 @@
         "no-unused-vars": 0,
         "quotes": ["error", "single"],
         "no-underscore-dangle": 0,
-        "class-methods-use-this": 0
+        "class-methods-use-this": 0,
+        "no-param-reassign": 0
     },
     "settings": {
         "html/html-extensions": [".html"]

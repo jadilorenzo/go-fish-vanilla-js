@@ -8,9 +8,9 @@ class GoFishController {
     view.draw(this.container())
   }
 
-  startGame(name) {
+  startGame({ name, bots }) {
     const player = new Player(name)
-    const game = new Game([player])
+    const game = new Game([player, ...(new Array(bots).fill(new Bot()))])
     const view = new GameView(game)
     view.draw(this.container())
   }

@@ -1,6 +1,6 @@
 class Game {
-  constructor(players = [new Player('Player 1')]) {
-    this._players = [...players, new Bot()]
+  constructor(players = [new Player('Player 1'), new Bot()]) {
+    this._players = [...players]
     this._deck = new Deck()
     this._playerIndex = 0
   }

@@ -1,4 +1,4 @@
-describe('Login', () => {
+describe('Login View', () => {
   let view = new LoginView()
   const container = document.createElement('div')
 
@@ -11,9 +11,11 @@ describe('Login', () => {
     view = new LoginView((response) => { recievedValue = response })
     document.body.appendChild(container)
     view.draw(container)
-    view.nameInput().value = 'Jefferry Bezos'
+    view.nameInput().value = 'Befferry Jezos'
+    view.botsInput().value = 1
     view.submitButton().click()
 
-    expect(recievedValue).not.toBe(null)
+    expect(recievedValue.bots).toBe('1')
+    expect(recievedValue.name).toBe('Befferry Jezos')
   })
 })
