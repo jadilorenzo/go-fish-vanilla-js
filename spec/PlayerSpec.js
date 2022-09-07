@@ -13,4 +13,17 @@ describe('Player', () => {
     expect(cards[0].rank()).toBe('A')
     expect(cards[1].rank()).toBe('A')
   })
+
+  it('creates a book when 4 duplicates present', () => {
+    const player = new Player([new Player('p1')])
+    player.take([
+      new Card('D', 'A'),
+      new Card('S', 'A'),
+      new Card('H', 'A'),
+      new Card('C', 'A'),
+      new Card('H', '2'),
+    ])
+    expect(player.hand().length).toBe(1)
+    expect(player.books().length).toBe(1)
+  })
 })
