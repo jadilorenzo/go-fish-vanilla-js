@@ -108,7 +108,7 @@ form > input:focus {
     align-items: center;
     justify-items: center;
     text-align: center;
-    padding: 1rem;
+    padding: 0.5rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     margin-bottom: 0.75rem;
@@ -119,4 +119,14 @@ form > input:focus {
 
 .player-name-bold {
     text-decoration: underline;
+}
+
+.group {
+    padding: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-bottom: 0.75rem;
+    background: white;
+    box-shadow: #DDD 1px 0px 10px;
+    border-radius: 0.5rem;
 }

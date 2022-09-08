@@ -11,7 +11,7 @@ describe('Login View', () => {
     document.body.appendChild(container)
     view.draw(container)
 
-    expect(view.nameElement().textContent).toBe('Beffrey Jezos')
+    expect(view.nameElement().textContent.trim()).toBe('Beffrey Jezos')
     expect(view.initialElement().textContent).toBe('B')
   })
 })
