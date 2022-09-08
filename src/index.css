@@ -1,0 +1,80 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+form > * {
+    display: block;
+}
+
+form > label {
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+form > input[type='text'], input[type='number'] {
+    border: none;
+    border-bottom: black solid 1px;
+    padding-bottom: 0.15rem;
+    width: 100%;
+    height: 1.5rem;
+    font-size: 0.9rem;
+}
+
+form > input[type='submit'] {
+    font-family: 'Roboto';
+    margin-top: 1rem;
+    border: none;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    background: black;
+    color: white;
+    border-radius: 0.25rem;
+    float: right;
+    margin-top: 1.5rem;
+    box-shadow: #CCC 1px 0px 10px;
+}
+
+form > input:focus {
+    outline: none;
+}
+
+.header {
+    font-family: 'Avenir';
+    min-height: 2rem;
+    padding: 1rem;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+    border-bottom: 1px solid black;
+
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    box-shadow: #DDD 1px 0px 20px;
+}
+
+.header > .flex-grow {
+    flex-grow: 1;
+}
+
+.header > .title {
+    font-size: large;
+    font-weight: 100;
+    font-family: 'Avenir';
+}
+
+.header > .login-status {
+    font-weight: bold;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.body {
+    width: 70%;
+    margin: auto;
+    margin-top: 3rem;
+}

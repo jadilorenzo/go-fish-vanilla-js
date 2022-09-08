@@ -1,7 +1,8 @@
 class GameView extends View {
-  constructor(game) {
+  constructor({ game, playerName }) {
     super()
     this._game = game
+    this._playerName = playerName
   }
 
   game() {
@@ -11,8 +12,10 @@ class GameView extends View {
   markup = (
     `
     <div>
+        <div id='header'></div>
+        <div class='body'>
         <div id='players'></div>
-        <h1>Go FIIISH</h1>
+        </div>
     </div>
    `
   )
@@ -21,7 +24,9 @@ class GameView extends View {
     return document.getElementById('players')
   }
 
-  drawPlayers(element) {
+  headerElement() { return document.getElementById('header') }
+
+  drawPlayers({ element }) {
     this._game.players().forEach((player, index) => {
       const playerView = new PlayerView(player, index)
       playerView.draw(element)
@@ -29,7 +34,8 @@ class GameView extends View {
   }
 
   populateGameView() {
-    this.drawPlayers(this.playerListElement())
+    this.drawPlayers({ element: this.playerListElement() })
+    new HeaderView({ playerName: this._playerName }).draw(this.headerElement())
   }
 
   draw(container) {

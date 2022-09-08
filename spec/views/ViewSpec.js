@@ -7,7 +7,7 @@ describe('View', () => {
   })
 
   it('has player name and initial', () => {
-    view = new View(new Player('Beffrey Jezos'))
+    view = new View()
     view.markup = 'Hello World'
     document.body.appendChild(container)
     const element = view.render({ container })

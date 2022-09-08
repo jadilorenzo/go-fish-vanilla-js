@@ -6,13 +6,19 @@ class LoginView extends View {
 
   markup = (
     `
-    <form class='user-form'>
-        <label for='name'>Name</label>
-        <input id='name' type='text' required value='User'/>
-        <label for='bots'>Number of Bots</label>
-        <input id='bots' type='number' value='1' />
-        <input id='submit' type='submit' value='Login' />
-    </form>
+    <div>
+      <div id='header'></div>
+      <div class='body'>
+        <h2>Login</h2>
+        <form class='user-form'>
+            <label for='name'>Name</label>
+            <input id='name' type='text' required value='User'/>
+            <label for='bots'>Number of Bots</label>
+            <input id='bots' type='number' value='1' />
+            <input id='submit' type='submit' value='Login' />
+        </form>
+      </div>
+    </div>
    `
   )
 
@@ -22,14 +28,21 @@ class LoginView extends View {
 
   submitButtonElement() { return document.getElementById('submit') }
 
+  headerElement() { return document.getElementById('header') }
+
   onSubmit(event) {
     event.preventDefault()
     this.onLogin({ name: event.target.name.value, bots: event.target.bots.value })
   }
 
+  populateLoginView(element) {
+    element.onsubmit = this.onSubmit.bind(this)
+    new HeaderView({}).draw(this.headerElement())
+  }
+
   draw(container) {
     const element = this.render({ container })
-    element.onsubmit = this.onSubmit.bind(this)
+    this.populateLoginView(element)
     return element
   }
 }
