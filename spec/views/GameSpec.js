@@ -1,5 +1,5 @@
 describe('Game View', () => {
-  const view = new GameView(new Game())
+  const view = new GameView({ game: new Game(), playerName: 'Player' })
   const container = document.createElement('div')
 
   afterEach(() => {
@@ -7,6 +7,6 @@ describe('Game View', () => {
   })
 
   it('has a game', () => {
-    expect(view.game).toBeTruthy()
+    expect(view.game()).toBeTruthy()
   })
 })

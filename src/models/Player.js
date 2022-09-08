@@ -21,8 +21,8 @@ class Player {
   }
 
   give({ rank }) {
-    const cards = this._hand.filter((card) => card.hasRank(rank))
-    this._hand = this._hand.filter((card) => !card.hasRank(rank))
+    const cards = this._hand.filter((card) => card.rank() === rank)
+    this._hand = this._hand.filter((card) => card.rank() !== rank)
     return cards
   }
 
@@ -42,8 +42,8 @@ class Player {
     const counts = this.countsOfCards()
     Object.keys(counts).forEach((key) => {
       if (counts[key] === 4) {
-        this._books.push(this._hand.filter((card) => card.hasRank(key)))
-        this._hand = this._hand.filter((card) => !card.hasRank(key))
+        this._books.push(this._hand.filter((card) => card.rank() === key))
+        this._hand = this._hand.filter((card) => card.rank() !== key)
       }
     })
   }

@@ -13,7 +13,7 @@ form > label {
     margin-bottom: 0.5rem;
 }
 
-form > input[type='text'], input[type='number'] {
+form > input[type='text'], form > input[type='number'] {
     border: none;
     border-bottom: black solid 1px;
     padding-bottom: 0.15rem;
@@ -23,9 +23,17 @@ form > input[type='text'], input[type='number'] {
     background: transparent;
 }
 
+form > input[type='text']:focus,
+form > input[type='number']:focus {
+    border-bottom: black solid 2px;
+}
+
 form > input[type='submit'] {
-    font-family: 'Roboto';
     margin-top: 1rem;
+}
+
+input[type='submit'], button {
+    font-family: 'Roboto';
     border: none;
     padding: 0.5rem;
     padding-left: 1rem;
@@ -36,7 +44,6 @@ form > input[type='submit'] {
     color: white;
     border-radius: 0.25rem;
     float: right;
-    margin-top: 1.5rem;
     box-shadow: #CCC 1px 0px 10px;
 }
 
@@ -115,10 +122,12 @@ form > input:focus {
     background: white;
     box-shadow: #DDD 1px 0px 10px;
     border-radius: 0.5rem;
+    font-weight: normal;
+    border: 1px solid #f5f5f5;
 }
 
 .player-name-bold {
-    text-decoration: underline;
+    font-weight: bolder;
 }
 
 .group {
@@ -129,4 +138,50 @@ form > input:focus {
     background: white;
     box-shadow: #DDD 1px 0px 10px;
     border-radius: 0.5rem;
+    border: 1px solid #DDD;
+}
+
+.hand-label {
+    margin-bottom: 0.5rem;
+}
+
+.no-cards-label {
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #666;
+}
+
+.cards {
+    display: flex;
+    width: 100%;
+    overflow-y: scroll;
+    transition: all ease-in-out 200ms;
+    height: 20rem;
+
+}
+
+.cards:hover {
+    padding-top: 3rem;
+    height: 17rem;
+}
+
+.card {
+    display: block;
+    margin-right: 0.1rem;
+    width: 1.25rem;
+    position: relative;
+    top: 0;
+    transition: all ease-in-out 200ms;
+}
+
+.card-img {
+    height: 12rem;
+    margin: auto;
+}
+
+.card:hover {
+    position: relative;
+    top: -2.5rem;
+    transition: all ease-in-out 100ms;
 }

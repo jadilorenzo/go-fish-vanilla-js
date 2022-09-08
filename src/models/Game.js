@@ -24,10 +24,15 @@ class Game {
     return this._players[this._playerIndex]
   }
 
-  _goFish() {
+  _goFish({ rank = '' } = {}) {
     const topCard = this._deck.draw()
     this._players[this._playerIndex].take({ cards: topCard ? [topCard] : [] })
-    return topCard
+    return topCard.rank() === rank
+  }
+
+  _draw() {
+    const topCard = this._deck.draw()
+    this._players[this._playerIndex].take({ cards: topCard ? [topCard] : [] })
   }
 
   _nextTurn() {
@@ -38,10 +43,15 @@ class Game {
 
   deal() {
     for (let index = 0; index < this._players.length * 7; index++) {
-      this._goFish()
+      this._goFish({})
       this._nextTurn()
     }
     this._playerIndex = 0
+  }
+
+  start() {
+    this._deck.shuffle()
+    this.deal()
   }
 
   _askFor({ givingPlayerIndex, rank }) {
@@ -52,7 +62,7 @@ class Game {
 
   takeTurn({ givingPlayerIndex, rank }) {
     if (this._askFor({ givingPlayerIndex, rank }).length === 0) {
-      if (!this._goFish().hasSuit(rank)) {
+      if (!this._goFish({ rank })) {
         this._nextTurn()
       }
     }

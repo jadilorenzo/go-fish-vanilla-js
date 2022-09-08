@@ -1,5 +1,5 @@
 describe('Hand View', () => {
-  const view = new HandView([new Card('H', 'A')])
+  const view = new HandView({ cards: [new Card('H', 'A')] })
   const container = document.createElement('div')
 
   afterEach(() => {

@@ -9,7 +9,7 @@ class PlayerView extends View {
           <div class='player-initial-circle'>
             <span class='player-initial' id='player-initial-${index}'></span>
           </div>
-          <h3 class='player-name player-name-${currentPlayer ? 'bold' : ''}' id='player-name-${index}'></h3>
+          <div class='player-name player-name-${currentPlayer ? 'bold' : ''}' id='player-name-${index}'></div>
       </div>
       `
     )

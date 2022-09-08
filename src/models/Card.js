@@ -20,12 +20,4 @@ class Card {
   equals(card) {
     return (this._suit === card._suit) && (this._rank === card._rank)
   }
-
-  hasSuit(suit) {
-    return this._suit === suit
-  }
-
-  hasRank(rank) {
-    return this._rank === rank
-  }
 }
