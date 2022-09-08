@@ -14,7 +14,7 @@ class LoginView extends View {
             <label for='name'>Name</label>
             <input id='name' type='text' required value='User'/>
             <label for='bots'>Number of Bots</label>
-            <input id='bots' type='number' value='1' />
+            <input id='bots' type='number' value='1' min='1' max='4'/>
             <input id='submit' type='submit' value='Login' />
         </form>
       </div>

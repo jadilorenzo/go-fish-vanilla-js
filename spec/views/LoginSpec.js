@@ -7,15 +7,26 @@ describe('Login View', () => {
   })
 
   it('gets a login response', () => {
-    let recievedValue = null
-    view = new LoginView((response) => { recievedValue = response })
+    let receivedValue = null
+    view = new LoginView((response) => { receivedValue = response })
     document.body.appendChild(container)
     view.draw(container)
     view.nameInputElement().value = 'Befferry Jezos'
     view.botsInputElement().value = 1
     view.submitButtonElement().click()
 
-    expect(recievedValue.bots).toBe('1')
-    expect(recievedValue.name).toBe('Befferry Jezos')
+    expect(receivedValue.bots).toBe('1')
+    expect(receivedValue.name).toBe('Befferry Jezos')
+  })
+
+  it('doesn\'t allow more than four bots', () => {
+    let receivedValue = null
+    view = new LoginView((response) => { receivedValue = response })
+    document.body.appendChild(container)
+    view.draw(container)
+    view.botsInputElement().value = 5
+    view.submitButtonElement().click()
+
+    expect(receivedValue).toBe(null)
   })
 })

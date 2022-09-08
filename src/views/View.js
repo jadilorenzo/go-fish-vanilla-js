@@ -1,4 +1,6 @@
 class View {
+  markup = ''
+
   // appends to container and return element to be modified
   render({ container, clear = true }) {
     if (clear) container.innerHTML = ''

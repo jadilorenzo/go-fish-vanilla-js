@@ -1,4 +1,4 @@
-describe('View', () => {
+describe('Header View', () => {
   const view = new HeaderView({ playerName: 'Beffrey Jezos' })
   const container = document.createElement('div')
 
@@ -8,6 +8,6 @@ describe('View', () => {
 
   it('has player name in header', () => {
     const element = view.draw(container)
-    expect(element.textContent.includes('Beffrey Jezos')).toBeTruthy()
+    expect(element.textContent.includes('Beffrey Jezos')).toBeTrue()
   })
 })

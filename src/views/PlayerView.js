@@ -1,13 +1,15 @@
 class PlayerView extends View {
-  constructor(player, index) {
+  constructor(player, index, currentPlayer) {
     super()
     this.index = index
     this.player = player
     this.markup = (
       `
-      <div>
-          <span id='player-initial-${index}'></span>
-          <h3 id='player-name-${index}'></h3>
+      <div class='player'>
+          <div class='player-initial-circle'>
+            <span class='player-initial' id='player-initial-${index}'></span>
+          </div>
+          <h3 class='player-name player-name-${currentPlayer ? 'bold' : ''}' id='player-name-${index}'></h3>
       </div>
       `
     )
@@ -23,7 +25,7 @@ class PlayerView extends View {
 
   populatePlayerView() {
     this.initialElement().textContent = this.player.name.split('')[0]
-    this.nameElement().textContent = this.player.name
+    this.nameElement().textContent = `${this.player.name} ${this.index === 0 ? '(you)' : ''}`
   }
 
   draw(container) {

@@ -1,6 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
+    background: #FAFAFA;
 }
 
 form > * {
@@ -19,6 +20,7 @@ form > input[type='text'], input[type='number'] {
     width: 100%;
     height: 1.5rem;
     font-size: 0.9rem;
+    background: transparent;
 }
 
 form > input[type='submit'] {
@@ -54,6 +56,7 @@ form > input:focus {
     align-items: center;
     justify-items: center;
     box-shadow: #DDD 1px 0px 20px;
+    background: white;
 }
 
 .header > .flex-grow {
@@ -62,8 +65,8 @@ form > input:focus {
 
 .header > .title {
     font-size: large;
-    font-weight: 100;
-    font-family: 'Avenir';
+    font-weight: 300;
+    font-family: 'Jost';
 }
 
 .header > .login-status {
@@ -77,4 +80,43 @@ form > input:focus {
     width: 70%;
     margin: auto;
     margin-top: 3rem;
+}
+
+.player > .player-initial-circle {
+    display: block;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 100%;
+    background: lightgray;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.player-initial {
+    width: 2rem;
+    color: #333;
+}
+
+.player-name {
+    margin-left: 0.5rem;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    padding: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-bottom: 0.75rem;
+    background: white;
+    box-shadow: #DDD 1px 0px 10px;
+    border-radius: 0.5rem;
+}
+
+.player-name-bold {
+    text-decoration: underline;
 }
