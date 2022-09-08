@@ -1,5 +1,6 @@
-class PlayerView {
+class PlayerView extends View {
   constructor(player, index) {
+    super()
     this.index = index
     this.player = player
     this.markup = (
@@ -25,10 +26,8 @@ class PlayerView {
     this.nameElement().textContent = this.player.name
   }
 
-  draw(element) {
-    const div = document.createElement('div')
-    div.innerHTML = this.markup
-    element.appendChild(div)
+  draw(container) {
+    const element = this.render({ container, clear: false })
     this.populatePlayerView()
     return element
   }

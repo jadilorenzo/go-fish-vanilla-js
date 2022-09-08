@@ -1,5 +1,6 @@
-class GameView {
+class GameView extends View {
   constructor(game) {
+    super()
     this._game = game
   }
 
@@ -32,11 +33,7 @@ class GameView {
   }
 
   draw(container) {
-    container.innerHTML = ''
-    const element = document.createElement('div')
-    element.innerHTML = this.markup
-    container.appendChild(element)
-
+    this.render({ container })
     this.populateGameView()
     return element
   }

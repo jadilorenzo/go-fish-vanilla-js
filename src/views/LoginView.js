@@ -1,5 +1,6 @@
-class LoginView {
+class LoginView extends View {
   constructor(onLogin) {
+    super()
     this.onLogin = onLogin
   }
 
@@ -27,11 +28,8 @@ class LoginView {
   }
 
   draw(container) {
-    container.innerHTML = ''
-    const element = document.createElement('div')
-    element.innerHTML = this.markup
+    const element = this.render({ container })
     element.onsubmit = this.onSubmit.bind(this)
-    container.appendChild(element)
     return element
   }
 }
