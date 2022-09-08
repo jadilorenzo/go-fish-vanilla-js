@@ -15,11 +15,11 @@ class LoginView {
    `
   )
 
-  nameInput() { return document.getElementById('name') }
+  nameInputElement() { return document.getElementById('name') }
 
-  botsInput() { return document.getElementById('bots') }
+  botsInputElement() { return document.getElementById('bots') }
 
-  submitButton() { return document.getElementById('submit') }
+  submitButtonElement() { return document.getElementById('submit') }
 
   onSubmit(event) {
     event.preventDefault()

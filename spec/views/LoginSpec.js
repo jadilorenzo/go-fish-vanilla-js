@@ -11,9 +11,9 @@ describe('Login View', () => {
     view = new LoginView((response) => { recievedValue = response })
     document.body.appendChild(container)
     view.draw(container)
-    view.nameInput().value = 'Befferry Jezos'
-    view.botsInput().value = 1
-    view.submitButton().click()
+    view.nameInputElement().value = 'Befferry Jezos'
+    view.botsInputElement().value = 1
+    view.submitButtonElement().click()
 
     expect(recievedValue.bots).toBe('1')
     expect(recievedValue.name).toBe('Befferry Jezos')
