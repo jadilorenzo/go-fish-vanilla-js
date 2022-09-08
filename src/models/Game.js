@@ -26,7 +26,7 @@ class Game {
 
   _goFish() {
     const topCard = this._deck.draw()
-    this._players[this._playerIndex].take(topCard ? [topCard] : [])
+    this._players[this._playerIndex].take({ cards: topCard ? [topCard] : [] })
     return topCard
   }
 
@@ -44,14 +44,14 @@ class Game {
     this._playerIndex = 0
   }
 
-  _askFor(givingPlayerIndex, rank) {
-    const cards = this._players[givingPlayerIndex].give(rank)
-    this._players[this._playerIndex].take(cards)
+  _askFor({ givingPlayerIndex, rank }) {
+    const cards = this._players[givingPlayerIndex].give({ rank })
+    this._players[this._playerIndex].take({ cards })
     return cards
   }
 
-  takeTurn(givingPlayerIndex, rank) {
-    if (this._askFor(givingPlayerIndex, rank).length === 0) {
+  takeTurn({ givingPlayerIndex, rank }) {
+    if (this._askFor({ givingPlayerIndex, rank }).length === 0) {
       if (!this._goFish().hasSuit(rank)) {
         this._nextTurn()
       }

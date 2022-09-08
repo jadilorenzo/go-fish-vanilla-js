@@ -1,4 +1,4 @@
-describe('Deck', () => {
+describe('Deck Model', () => {
   const deck = new Deck()
 
   it('has 52 cards', () => {

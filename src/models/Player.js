@@ -13,14 +13,14 @@ class Player {
     return this._hand
   }
 
-  take(cards) {
+  take({ cards }) {
     if (cards.length !== 0) {
       this._hand = this._hand.concat(cards)
     }
     this.reviewForBooks()
   }
 
-  give(rank) {
+  give({ rank }) {
     const cards = this._hand.filter((card) => card.hasRank(rank))
     this._hand = this._hand.filter((card) => !card.hasRank(rank))
     return cards

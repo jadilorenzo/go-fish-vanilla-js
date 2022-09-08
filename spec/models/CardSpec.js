@@ -1,4 +1,4 @@
-describe('Card', () => {
+describe('Card Model', () => {
   it('only allows approprate values', () => {
     expect(new Card('foo', 'baz').rank()).toBe(undefined)
   })

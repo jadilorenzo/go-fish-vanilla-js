@@ -1,4 +1,4 @@
-describe('Game', () => {
+describe('Game Model', () => {
   it('has all neccesary appendages', () => {
     const game = new Game()
     expect(game).toBeTruthy()
@@ -32,7 +32,7 @@ describe('Game', () => {
   it('asks for a rank of card', () => {
     const game = new Game()
     game.deal()
-    game.takeTurn(1, 'A')
+    game.takeTurn({ givingPlayerIndex: 1, rank: 'A' })
     expect(game.players()[1].hand().length).toBe(6)
     expect(game.players()[0].hand()[7].rank()).toBe('A')
     expect(game.players()[0].hand().length).toBe(8)
@@ -41,7 +41,7 @@ describe('Game', () => {
   it('draws if no matching card from player', () => {
     const game = new Game()
     game.deal()
-    game.takeTurn(1, 'Q')
+    game.takeTurn({ givingPlayerIndex: 1, rank: 'Q' })
     expect(game.players()[0].hand().length).toBe(8)
     expect(game.players()[1].hand().length).toBe(7)
   })
