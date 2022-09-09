@@ -8,6 +8,7 @@ class CardView extends View {
     super()
     this.index = index
     this.selectRank = selectRank
+    this.still = still
     this._card = card
     this.markup = (
       `
@@ -34,7 +35,7 @@ class CardView extends View {
   }
 
   populateCardView() {
-    this.handleClick({ element: this.cardElement() })
+    if (!this.still) this.handleClick({ element: this.cardElement() })
   }
 
   draw(container) {

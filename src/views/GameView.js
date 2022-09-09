@@ -31,10 +31,17 @@ class GameView extends View {
 
   cardElement(index = this.index) { return document.getElementById(`card-${index}`) }
 
+  ask({ index }) {
+    console.log(index)
+  }
+
   drawPlayers({ element, button = false }) {
     this._game.players().forEach((player, index) => {
       const currentPlayer = index === this._game._playerIndex
-      const playerView = new PlayerView(player, index, currentPlayer, button)
+      const playerTurn = this._game._playerIndex === 0
+      const playerView = new PlayerView({
+        player, index, currentPlayer, button, playerTurn, ask: this.ask,
+      })
       playerView.draw(element)
     })
   }
