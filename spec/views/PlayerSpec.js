@@ -1,4 +1,4 @@
-describe('Login View', () => {
+describe('Player View', () => {
   let view = new LoginView()
   const container = document.createElement('div')
 
@@ -11,7 +11,7 @@ describe('Login View', () => {
     document.body.appendChild(container)
     view.draw(container)
 
-    expect(view.nameElement().textContent.trim()).toBe('Beffrey Jezos')
+    expect(view.nameElement().textContent.includes('Beffrey Jezos')).toBeTrue()
     expect(view.initialElement().textContent).toBe('B')
   })
 })

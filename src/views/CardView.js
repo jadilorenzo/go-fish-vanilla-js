@@ -1,12 +1,17 @@
 class CardView extends View {
-  constructor({ card, index, selectRank }) {
+  constructor({
+    card = new Card('H', 'A'),
+    index = -1,
+    selectRank = () => {},
+    still = undefined,
+  }) {
     super()
     this.index = index
     this.selectRank = selectRank
     this._card = card
     this.markup = (
       `
-        <div id='card-${index}' class='card ${index === 0 ? 'first-card' : 'other-card'}'>
+        <div id='card-${index}' class='card ${(still === undefined) ? 'hover-card' : ''}'>
           <img class='card-img' src='images/${card.suit()}_${card.rank()}.svg'>
         </div>
       `
@@ -17,7 +22,7 @@ class CardView extends View {
     return this._card
   }
 
-  cardElement() { return document.getElementById(`card-${this.index}`) }
+  cardElement(index = this.index) { return document.getElementById(`card-${index}`) }
 
   onClick(event) {
     event.preventDefault()

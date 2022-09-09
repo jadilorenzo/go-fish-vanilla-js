@@ -1,5 +1,6 @@
 describe('Hand View', () => {
-  const view = new HandView({ cards: [new Card('H', 'A')] })
+  let response = null
+  const view = new HandView({ cards: [], setRank = ({ rank }) => { response = rank } })
   const container = document.createElement('div')
 
   afterEach(() => {
