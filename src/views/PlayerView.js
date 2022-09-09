@@ -1,5 +1,5 @@
 class PlayerView extends View {
-  constructor(player, index, currentPlayer) {
+  constructor(player, index, currentPlayer, button = false) {
     super()
     this.index = index
     this.player = player
@@ -10,18 +10,16 @@ class PlayerView extends View {
             <span class='player-initial' id='player-initial-${index}'></span>
           </div>
           <div class='player-name player-name-${currentPlayer ? 'bold' : ''}' id='player-name-${index}'></div>
+          <div class='flex-grow'></div>
+          ${(button && this.index !== 0) ? `<button id='player-button-${index}'>Ask</button>` : ''}
       </div>
       `
     )
   }
 
-  initialElement() {
-    return document.getElementById(`player-initial-${this.index}`)
-  }
+  initialElement() { return document.getElementById(`player-initial-${this.index}`) }
 
-  nameElement() {
-    return document.getElementById(`player-name-${this.index}`)
-  }
+  nameElement() { return document.getElementById(`player-name-${this.index}`) }
 
   populatePlayerView() {
     this.initialElement().textContent = this.player.name.split('')[0]

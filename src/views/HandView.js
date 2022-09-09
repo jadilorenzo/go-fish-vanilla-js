@@ -1,8 +1,9 @@
 class HandView extends View {
-  constructor({ cards }) {
+  constructor({ cards, selectRank }) {
     super()
     this._cards = cards
     this._selectedCards = []
+    this._selectGameRank = selectRank
     this.markup = (
       `
         <div class='group'>
@@ -15,7 +16,6 @@ class HandView extends View {
         </div>
       `
     )
-    this.selectedRank = ''
   }
 
   cardsElement() { return document.getElementById('cards') }
@@ -23,7 +23,7 @@ class HandView extends View {
   cardsSelectedElement() { return document.getElementById('cards-selected') }
 
   selectRank({ rank }) {
-    this.selectedRank = rank
+    this._selectGameRank({ rank })
     this._selectedCards = this._cards.filter((card) => card.rank() === rank)
     this.cardsSelectedElement().innerHTML = ''
     this.drawCards({

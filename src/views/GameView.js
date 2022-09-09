@@ -16,6 +16,7 @@ class GameView extends View {
     )
 
     this._game.start()
+    this.currentRank = ''
   }
 
   game() {
@@ -28,10 +29,12 @@ class GameView extends View {
 
   handElement() { return document.getElementById('hand') }
 
-  drawPlayers({ element }) {
+  cardElement(index = this.index) { return document.getElementById(`card-${index}`) }
+
+  drawPlayers({ element, button = false }) {
     this._game.players().forEach((player, index) => {
       const currentPlayer = index === this._game._playerIndex
-      const playerView = new PlayerView(player, index, currentPlayer)
+      const playerView = new PlayerView(player, index, currentPlayer, button)
       playerView.draw(element)
     })
   }
@@ -40,10 +43,16 @@ class GameView extends View {
     new HeaderView({ playerName: this._playerName }).draw(element)
   }
 
+  selectRank({ rank }) {
+    this.currentRank = rank
+    this.playerListElement().innerHTML = ''
+    this.drawPlayers({ element: this.playerListElement(), button: true })
+  }
+
   drawHand({ element }) {
-    console.log({ cards: this._game.players()[0].hand() })
     new HandView({
       cards: this._game.players()[0].hand(),
+      selectRank: ({ rank }) => this.selectRank({ rank }),
     }).draw(element)
   }
 

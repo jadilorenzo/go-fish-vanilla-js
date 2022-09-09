@@ -45,6 +45,13 @@ input[type='submit'], button {
     border-radius: 0.25rem;
     float: right;
     box-shadow: #CCC 1px 0px 10px;
+    transition: all ease-in-out 100ms;
+}
+
+button:hover,
+input[type='submit']:hover {
+    box-shadow: rgb(168, 168, 168) 1px 0px 10px;
+    transition: all ease-in-out 100ms;
 }
 
 form > input:focus {
@@ -84,7 +91,7 @@ form > input:focus {
 }
 
 .body {
-    width: 70%;
+    width: 95%;
     margin: auto;
     margin-top: 3rem;
 }
@@ -199,5 +206,9 @@ form > input:focus {
     .card-groups {
         display: flex;
         width: 100%;
+    }
+
+    .body {
+        width: 70%;
     }
 }
