@@ -42,14 +42,15 @@ class GameView extends View {
 
   drawHand({ element }) {
     console.log({ cards: this._game.players()[0].hand() })
-    new HandView({ cards: this._game.players()[0].hand() }).draw(element)
+    new HandView({
+      cards: this._game.players()[0].hand(),
+    }).draw(element)
   }
 
   populateGameView() {
     this.drawPlayers({ element: this.playerListElement() })
     this.drawHeader({ element: this.headerElement() })
     this.drawHand({ element: this.handElement() })
-    this.handleDealButton({ element: this.dealButtonElement() })
   }
 
   draw(container) {

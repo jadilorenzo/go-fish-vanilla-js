@@ -10,13 +10,21 @@ class HandView extends View {
         </div>
       `
     )
+    this.selectedRank = ''
   }
 
   cardsElement() { return document.getElementById('cards') }
 
   drawCards({ element }) {
     this._cards.forEach((card, index) => {
-      new CardView({ card, index }).draw(element)
+      new CardView({
+        card,
+        index,
+        selectRank: ({ rank }) => {
+          console.log(rank)
+          this.selectedRank = rank
+        },
+      }).draw(element)
     })
   }
 

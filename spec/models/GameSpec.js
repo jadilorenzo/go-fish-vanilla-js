@@ -10,11 +10,12 @@ describe('Game Model', () => {
 
   it('allows multiple goFish', () => {
     const game = new Game()
+    console.log(game)
     game._goFish()
     expect(game.deck().length).toBe(51)
     game._nextTurn()
     game._goFish()
-    expect(game._currentPlayer().name).toBe('Billy Bob')
+    expect(game.players()[1].name).toBe('Billy Bob')
     expect(game._lastPlayer().hand().length).toBe(1)
     expect(game.deck().length).toBe(50)
     expect(game._lastPlayer().name).toBe('Player 1')

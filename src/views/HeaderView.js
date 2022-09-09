@@ -4,7 +4,8 @@ class HeaderView extends View {
     this.markup = (
       `
         <div class='header'>
-            <div class='title'>Go Fish</div>
+            <div class='logo'>🐟</div>
+            <div class='title'> Go Fish</div>
             <div class='flex-grow'></div>
             <div class='login-status'>${playerName ? `Logged in as: ${playerName}` : 'Not logged in'}</div>
         </div>
