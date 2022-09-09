@@ -143,9 +143,6 @@ form > input:focus {
 
 .hand-label {
     margin-bottom: 0.5rem;
-}
-
-.no-cards-label {
     font-weight: bold;
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -157,19 +154,19 @@ form > input:focus {
     width: 100%;
     overflow-y: scroll;
     transition: all ease-in-out 200ms;
-    height: 20rem;
+    height: 17rem;
 
 }
 
 .cards:hover {
     padding-top: 3rem;
-    height: 17rem;
+    height: 14rem;
 }
 
 .card {
     display: block;
     margin-right: 0.1rem;
-    width: 1.25rem;
+    width: 1rem;
     position: relative;
     top: 0;
     transition: all ease-in-out 200ms;

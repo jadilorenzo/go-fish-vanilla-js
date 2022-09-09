@@ -5,7 +5,7 @@ class HandView extends View {
     this.markup = (
       `
         <div class='group'>
-            <div class='hand-label'>Hand:</div>
+            <div class='hand-label'>Your Hand:</div>
             <div class='${cards.length > 0 ? 'cards' : ''}' id='cards'></div>
         </div>
       `
@@ -15,13 +15,9 @@ class HandView extends View {
   cardsElement() { return document.getElementById('cards') }
 
   drawCards({ element }) {
-    if (this._cards.length > 0) {
-      this._cards.forEach((card, index) => {
-        new CardView({ card, index }).draw(element)
-      })
-    } else {
-      this.cardsElement().innerHTML = '<div class=\'no-cards-label\'>no cards</div>'
-    }
+    this._cards.forEach((card, index) => {
+      new CardView({ card, index }).draw(element)
+    })
   }
 
   populateHand() {
