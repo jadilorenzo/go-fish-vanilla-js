@@ -32,7 +32,16 @@ class GameView extends View {
   cardElement(index = this.index) { return document.getElementById(`card-${index}`) }
 
   ask({ index }) {
-    console.log(index)
+    this._game.playRound({ givingPlayerIndex: index, rank: this.currentRank })
+    if (this._game.currentPlayer().hand().length === 0) {
+      if (!this._game.gameOver()) {
+        this.ask({ index })
+      } else {
+        alert('game over')
+      }
+    }
+    this.playerListElement().innerHTML = ''
+    this.populateGameView()
   }
 
   drawPlayers({ element, button = false }) {
@@ -40,7 +49,12 @@ class GameView extends View {
       const currentPlayer = index === this._game._playerIndex
       const playerTurn = this._game._playerIndex === 0
       const playerView = new PlayerView({
-        player, index, currentPlayer, button, playerTurn, ask: this.ask,
+        player,
+        index,
+        currentPlayer,
+        button,
+        playerTurn,
+        ask: ({ givingPlayerIndex }) => this.ask({ index: givingPlayerIndex }),
       })
       playerView.draw(element)
     })

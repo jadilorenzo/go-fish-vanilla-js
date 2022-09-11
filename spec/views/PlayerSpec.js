@@ -4,7 +4,6 @@ describe('Player View', () => {
 
   beforeEach(() => {
     document.body.appendChild(container)
-    view.draw(container)
   })
 
   afterEach(() => {
@@ -12,8 +11,8 @@ describe('Player View', () => {
   })
 
   it('has player name and initial', () => {
-    view = new PlayerView(new Player('Beffrey Jezos'))
-
+    view = new PlayerView({ player: new Player('Beffrey Jezos') })
+    view.draw(container)
     expect(view.nameElement().textContent.includes('Beffrey Jezos')).toBeTrue()
     expect(view.initialElement().textContent).toBe('B')
   })

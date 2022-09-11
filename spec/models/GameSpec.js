@@ -10,11 +10,10 @@ describe('Game Model', () => {
 
   it('allows multiple goFish', () => {
     const game = new Game()
-    console.log(game)
-    game._goFish()
+    game.goFish()
     expect(game.deck().length).toBe(51)
     game._nextTurn()
-    game._goFish()
+    game.goFish()
     expect(game.players()[1].name).toBe('Billy Bob')
     expect(game._lastPlayer().hand().length).toBe(1)
     expect(game.deck().length).toBe(50)
@@ -25,7 +24,7 @@ describe('Game Model', () => {
     const game = new Game()
     game.deal()
     expect(game.deck().length).toBe(52 - 14)
-    expect(game._currentPlayer().name).toBe('Player 1')
+    expect(game.currentPlayer().name).toBe('Player 1')
     expect(game.players()[0].hand().length).toBe(7)
     expect(game.players()[1].hand().length).toBe(7)
   })
@@ -45,5 +44,66 @@ describe('Game Model', () => {
     game.takeTurn({ givingPlayerIndex: 1, rank: 'Q' })
     expect(game.players()[0].hand().length).toBe(8)
     expect(game.players()[1].hand().length).toBe(7)
+  })
+
+  it('cycles throup turns', () => {
+    const game = new Game()
+    expect(game._playerIndex).toBe(0)
+    game._nextTurn()
+    expect(game._playerIndex).toBe(1)
+    game._nextTurn()
+    expect(game._playerIndex).toBe(0)
+    game._nextTurn()
+    expect(game._playerIndex).toBe(1)
+  })
+
+  it('plays more than one round', () => {
+    const game = new Game()
+    game.deal()
+    game.takeTurn({ givingPlayerIndex: 1, rank: 'Q' })
+    game.takeTurn({ givingPlayerIndex: 0, rank: 'A' })
+    game.takeTurn({ givingPlayerIndex: 1, rank: 'K' })
+    game.takeTurn({ givingPlayerIndex: 0, rank: 'A' })
+    expect(game.players()[0].hand().length).toBe(7)
+    expect(game.players()[1].hand().length).toBe(9)
+  })
+
+  it('plays through bots back to player', () => {
+    const game = new Game(
+      [
+        new Player('Beorge Gush'),
+        new Bot('COA'),
+        new Bot('Pon Raul'),
+        new Bot('Oarack Bbama'),
+      ],
+    )
+    game.start()
+    game.playRound({
+      givingPlayerIndex: game._generateOtherPlayerIndex({ index: game._playerIndex }),
+      rank: game._generateRandomRankFromHand(),
+    })
+
+    expect(game.currentPlayer().bot).toBe(undefined)
+  })
+
+  it('plays a complete game', () => {
+    const game = new Game(
+      [
+        new Player('Beorge Gush'),
+        new Bot('COA'),
+        new Bot('Pon Raul'),
+        new Bot('Oarack Bbama'),
+      ],
+    )
+    game.start()
+
+    while (!game.gameOver()) {
+      game.playRound({
+        givingPlayerIndex: game._generateOtherPlayerIndex({ index: game._playerIndex }),
+        rank: game._generateRandomRankFromHand(),
+      })
+    }
+
+    expect(game.currentPlayer().hand().length).toBe(0)
   })
 })
