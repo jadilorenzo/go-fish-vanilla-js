@@ -255,3 +255,9 @@ form > input:focus {
     margin-right: .1rem;
     border: solid 1px black;
 }
+
+.stats {
+    height: 10rem;
+    overflow: scroll;
+    color: rgb(70, 70, 70);
+}

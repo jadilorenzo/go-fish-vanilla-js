@@ -68,10 +68,11 @@ class Game {
   playRound({
     givingPlayerIndex,
     rank,
+    addStat,
   }) {
-    this.takeTurn({ givingPlayerIndex, rank })
+    this.takeTurn({ givingPlayerIndex, rank, addStat })
     if (this.currentPlayer().bot) {
-      this.playRound({})
+      this.playRound({ addStat })
     }
   }
 
@@ -98,11 +99,30 @@ class Game {
   takeTurn({
     givingPlayerIndex = this._generateOtherPlayerIndex(this._playerIndex),
     rank = this._generateRandomRankFromHand(),
+    addStat = () => {},
   }) {
     if (this._askFor({ givingPlayerIndex, rank }).length === 0) {
+      addStat({
+        stat: `${this.currentPlayer().name}`,
+        detail: ` asked for cards of rank ${rank}`,
+      })
       if (!this.goFish({ rank })) {
+        addStat({
+          stat: `${this.currentPlayer().name}`,
+          detail: ' drew a card.',
+        })
         this._nextTurn()
+      } else {
+        addStat({
+          stat: `${this.currentPlayer().name}`,
+          detail: ` drew a card of rank ${rank}`,
+        })
       }
+    } else {
+      addStat({
+        stat: `${this.currentPlayer().name}`,
+        detail: ` recieved cards with rank ${rank} from ${this.players()[givingPlayerIndex].name}`,
+      })
     }
   }
 }

@@ -10,6 +10,7 @@ class GameView extends View {
             <div id='header'></div>
             <div class='body'>
                 <div class='players group' id='players'></div>
+                <div class='group stats' id='stats'></div>
                 <div id='hand'></div>
             </div>
         </div>
@@ -32,8 +33,21 @@ class GameView extends View {
 
   cardElement(index = this.index) { return document.getElementById(`card-${index}`) }
 
+  statsElement() { return document.getElementById('stats') }
+
+  addStat({ stat, detail }) {
+    console.log({ stat, detail })
+    const view = new StatView({ stat, detail })
+    console.log(this.statsElement())
+    view.draw(this.statsElement())
+  }
+
   ask({ index }) {
-    this._game.playRound({ givingPlayerIndex: index, rank: this.currentRank })
+    this._game.playRound({
+      givingPlayerIndex: index,
+      rank: this.currentRank,
+      addStat: ({ stat, detail }) => this.addStat({ stat, detail }),
+    })
     if (this._game.currentPlayer().hand().length === 0) {
       if (!this._game.gameOver()) {
         this.ask({ index })
@@ -90,6 +104,10 @@ class GameView extends View {
   draw(container) {
     const element = this.render({ container })
     this.populateGameView()
+    this.addStat({
+      stat: 'Game',
+      detail: ' started',
+    })
     return element
   }
 }
