@@ -27,18 +27,18 @@ class GameView extends View {
 
   playerListElement() { return document.getElementById('players') }
 
+  askButtonElement(index) { return document.getElementById(`player-button-${index}`) }
+
   headerElement() { return document.getElementById('header') }
 
   handElement() { return document.getElementById('hand') }
 
-  cardElement(index = this.index) { return document.getElementById(`card-${index}`) }
+  cardElement(search = this.index) { return document.getElementById(`card-${search}`) }
 
   statsElement() { return document.getElementById('stats') }
 
   addStat({ stat, detail }) {
-    console.log({ stat, detail })
     const view = new StatView({ stat, detail })
-    console.log(this.statsElement())
     view.draw(this.statsElement())
   }
 

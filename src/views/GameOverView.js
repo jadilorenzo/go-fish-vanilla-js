@@ -6,7 +6,6 @@ class GameOverView extends View {
     super()
     this._game = game
     this._playerName = playerName
-    console.log(playerName)
     this.markup = (
       `
         <div>

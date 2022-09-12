@@ -92,7 +92,6 @@ class Game {
       .filter((player) => player.hand().length <= 0)
       .length > this.players().length - 1
     const emptyDeck = this.deck().length === 0
-    console.log({ res: noCardsInHands && emptyDeck, players: this.players() })
     return noCardsInHands && emptyDeck
   }
 

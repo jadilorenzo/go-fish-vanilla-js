@@ -13,7 +13,7 @@ class CardView extends View {
     this.markup = (
       `
         <div id='card-${index}' class='card ${(still === undefined) ? 'hover-card' : ''}'>
-          <img class='card-img' src='images/${card.suit()}_${card.rank()}.svg'>
+          <img class='card-img' id='card-${card.suit()}_${card.rank()}' src='images/${card.suit()}_${card.rank()}.svg'>
         </div>
       `
     )
