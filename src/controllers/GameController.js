@@ -24,12 +24,28 @@ class GoFishController {
     return players
   }
 
+  callGameOver({ game, playerName }) {
+    const gameOverView = new GameOverView({
+      game,
+      playerName,
+    })
+    gameOverView.draw(this.container())
+  }
+
   startGame({ name, bots }) {
     const player = new Player(name)
     const users = this._generateUsers({ player, bots })
     console.log(users)
-    const game = new Game(users)
-    const view = new GameView({ game, playerName: name })
+    const newGame = new Game(users)
+    const view = new GameView({
+      game: newGame,
+      playerName:
+      name,
+      callGameOver: ({ game, playerName }) => {
+        console.log(playerName)
+        this.callGameOver({ game, playerName })
+      },
+    })
     view.draw(this.container())
   }
 }

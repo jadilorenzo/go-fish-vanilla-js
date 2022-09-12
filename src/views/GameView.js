@@ -1,14 +1,15 @@
 class GameView extends View {
-  constructor({ game, playerName }) {
+  constructor({ game, playerName, callGameOver }) {
     super()
     this._game = game
     this._playerName = playerName
+    this.callGameOver = callGameOver
     this.markup = (
       `
         <div>
             <div id='header'></div>
             <div class='body'>
-                <div id='players'></div>
+                <div class='players group' id='players'></div>
                 <div id='hand'></div>
             </div>
         </div>
@@ -37,7 +38,10 @@ class GameView extends View {
       if (!this._game.gameOver()) {
         this.ask({ index })
       } else {
-        alert('game over')
+        this.callGameOver({
+          game: this.game(),
+          playerName: this._playerName,
+        })
       }
     }
     this.playerListElement().innerHTML = ''
