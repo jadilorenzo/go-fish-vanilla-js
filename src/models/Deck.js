@@ -14,6 +14,10 @@ class Deck {
     return this._cards.length
   }
 
+  empty() {
+    return this._cards.length === 0
+  }
+
   cards() {
     return this._cards
   }

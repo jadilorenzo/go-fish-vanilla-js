@@ -1,3 +1,5 @@
+const random = (max, min) => Math.floor(Math.random() * (max - min) + min)
+
 class Player {
   constructor(name) {
     this.name = name
@@ -46,5 +48,20 @@ class Player {
         this._hand = this._hand.filter((card) => card.rank() !== key)
       }
     })
+  }
+
+  generateOtherPlayerIndex({ index, range }) {
+    let number = random(0, range - 1)
+    if (number === index) {
+      number = this.generateOtherPlayerIndex({ index, range })
+    }
+    return number
+  }
+
+  generateRandomRankFromHand({ hand }) {
+    if (hand?.length > 0) {
+      return hand[random(0, hand.length - 1)].rank()
+    }
+    return undefined
   }
 }

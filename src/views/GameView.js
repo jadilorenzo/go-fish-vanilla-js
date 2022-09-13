@@ -1,9 +1,10 @@
 class GameView extends View {
-  constructor({ game, playerName, callGameOver }) {
+  constructor({ game, playerName, callGameOver = () => {} }) {
     super()
     this._game = game
     this._playerName = playerName
-    this.callGameOver = callGameOver
+    // eslint-disable-next-line no-shadow
+    this.callGameOver = ({ game, playerName }) => callGameOver({ game, playerName })
     this.markup = (
       `
         <div>
@@ -42,22 +43,24 @@ class GameView extends View {
     view.draw(this.statsElement())
   }
 
+  checkIfGameOver({ index }) {
+    if (!this._game.gameOver() && this._game.currentPlayer().hand().length === 0) {
+      this.ask({ index })
+    } else {
+      this.callGameOver({
+        game: this.game(),
+        playerName: this._playerName,
+      })
+    }
+  }
+
   ask({ index }) {
     this._game.playRound({
       givingPlayerIndex: index,
       rank: this.currentRank,
       addStat: ({ stat, detail }) => this.addStat({ stat, detail }),
     })
-    if (this._game.currentPlayer().hand().length === 0) {
-      if (!this._game.gameOver()) {
-        this.ask({ index })
-      } else {
-        this.callGameOver({
-          game: this.game(),
-          playerName: this._playerName,
-        })
-      }
-    }
+    this.checkIfGameOver({ index })
     this.playerListElement().innerHTML = ''
     this.populateGameView()
   }

@@ -62,7 +62,7 @@ class PlayerView extends View {
   populatePlayerView() {
     this.initialElement().textContent = this.player.name.split('')[0]
     this.nameElement().textContent = (
-      `${this.player.name} ${this.index === 0 ? '(you)' : ''}`
+      `${this.player.name}`
     )
     this.cardNumberElement().textContent = `${this.player.hand().length} card${this.player.hand().length === 1 ? '' : 's'}`
     this.drawBooks()

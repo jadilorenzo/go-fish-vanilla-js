@@ -4,6 +4,7 @@ class HandView extends View {
     this._cards = cards
     this._selectedCards = []
     this._selectGameRank = selectRank
+    this.rankValues = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
     this.markup = (
       `
         <div class='group'>
@@ -34,7 +35,9 @@ class HandView extends View {
   }
 
   drawCards({ cards, element, still }) {
-    cards.forEach((card, index) => {
+    cards.sort((card1, card2) => (
+      this.rankValues.indexOf(card1.rank()) - this.rankValues.indexOf(card2.rank())
+    )).forEach((card, index) => {
       new CardView({
         card,
         index,

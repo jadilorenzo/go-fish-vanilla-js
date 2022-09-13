@@ -42,7 +42,7 @@ describe('Game View', () => {
     view.cardElement(0).click()
     view.askButtonElement(1).click()
     expect(view.game().players()[0].hand().length).toBe(8)
-    expect(view.game().players()[1].hand().length).toBe(6)
+    expect(view.game().players()[1].hand().length).toBe(8)
     expect(view.game().currentPlayer().bot).toBe(undefined)
   })
 

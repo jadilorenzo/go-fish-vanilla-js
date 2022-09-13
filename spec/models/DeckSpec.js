@@ -14,4 +14,11 @@ describe('Deck Model', () => {
     deck1.shuffle()
     expect(deck1).not.toEqual(deck2)
   })
+
+  it('checks empty', () => {
+    const deck1 = new Deck()
+
+    deck1._cards = []
+    expect(deck1.empty()).toBeTrue()
+  })
 })

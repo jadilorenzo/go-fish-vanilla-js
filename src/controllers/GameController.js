@@ -42,7 +42,6 @@ class GoFishController {
       playerName:
       name,
       callGameOver: ({ game, playerName }) => {
-        console.log(playerName)
         this.callGameOver({ game, playerName })
       },
     })

@@ -10,14 +10,14 @@ describe('Game Model', () => {
 
   it('allows multiple goFish', () => {
     const game = new Game()
-    game.goFish()
+    game._goFish()
     expect(game.deck().length).toBe(51)
     game._nextTurn()
-    game.goFish()
+    game._goFish()
     expect(game.players()[1].name).toBe('Billy Bob')
-    expect(game._lastPlayer().hand().length).toBe(1)
+    expect(game.players()[1].hand().length).toBe(1)
     expect(game.deck().length).toBe(50)
-    expect(game._lastPlayer().name).toBe('Player 1')
+    expect(game.players()[0].name).toBe('Player 1')
   })
 
   it('deals 7 cards to each player', () => {
@@ -33,9 +33,10 @@ describe('Game Model', () => {
     const game = new Game()
     game.deal()
     game.takeTurn({ givingPlayerIndex: 1, rank: 'A' })
+    console.log(game)
     expect(game.players()[1].hand().length).toBe(6)
-    expect(game.players()[0].hand()[7].rank()).toBe('A')
     expect(game.players()[0].hand().length).toBe(8)
+    expect(game.players()[0].hand()[7].rank()).toBe('A')
   })
 
   it('draws if no matching card from player', () => {
@@ -48,13 +49,13 @@ describe('Game Model', () => {
 
   it('cycles throup turns', () => {
     const game = new Game()
-    expect(game._playerIndex).toBe(0)
+    expect(game._turn).toBe(0)
     game._nextTurn()
-    expect(game._playerIndex).toBe(1)
+    expect(game._turn).toBe(1)
     game._nextTurn()
-    expect(game._playerIndex).toBe(0)
+    expect(game._turn).toBe(0)
     game._nextTurn()
-    expect(game._playerIndex).toBe(1)
+    expect(game._turn).toBe(1)
   })
 
   it('plays more than one round', () => {
@@ -79,8 +80,12 @@ describe('Game Model', () => {
     )
     game.start()
     game.playRound({
-      givingPlayerIndex: game._generateOtherPlayerIndex({ index: game._playerIndex }),
-      rank: game._generateRandomRankFromHand(),
+      givingPlayerIndex: game
+        .currentPlayer()
+        .generateOtherPlayerIndex({ index: game._turn, range: game.players().length }),
+      rank: game
+        .currentPlayer()
+        .generateRandomRankFromHand({ hand: game.currentPlayer().hand() }),
     })
 
     expect(game.currentPlayer().bot).toBe(undefined)
@@ -99,8 +104,12 @@ describe('Game Model', () => {
 
     while (!game.gameOver()) {
       game.playRound({
-        givingPlayerIndex: game._generateOtherPlayerIndex({ index: game._playerIndex }),
-        rank: game._generateRandomRankFromHand(),
+        givingPlayerIndex: game
+          .currentPlayer()
+          .generateOtherPlayerIndex({ index: game._turn, range: game.players().length }),
+        rank: game
+          .currentPlayer()
+          .generateRandomRankFromHand({ hand: game.currentPlayer().hand() }),
       })
     }
 
